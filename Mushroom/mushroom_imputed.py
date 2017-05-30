@@ -8,7 +8,6 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import accuracy_score
 from fancyimpute import MICE
 
-
 train=pd.read_csv('train.csv')
 test=pd.read_csv('test.csv')
 
@@ -22,14 +21,10 @@ y=train[['p']].values
 train=train.values
 train=solver.complete(train)
 
-
 x=np.delete(train,0,axis=1)
 
 model=tree.DecisionTreeClassifier(criterion='gini')
-# model=RandomForestClassifier()
 model=model.fit(x,y)
-
-
 
 b=test[['p']].values
 test=test.values
@@ -38,9 +33,6 @@ a=np.delete(test,0,axis=1)
 
 c=model.predict(a)
 
-# print(x)
 print "\nAccuracy of Model with Imputation done with MICE = ",accuracy_score(b,c)
-
-
 
 # cols=['p','x','s','n','t','f','c','k','e.1','w','o','u']
